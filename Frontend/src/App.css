@@ -1,0 +1,124 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+body{
+  background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+}
+
+form{
+  height: 370px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 400px;
+  background-color: rgba(0,0,0,0.5) !important;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid white;
+  
+}
+form h1{
+  color: white;
+}
+
+input{
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px gray;
+  margin: 10px;
+}
+.signup{
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  color: white;
+  height: 600px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 400px;
+  background-color: rgba(0,0,0,0.5) !important;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid white;
+  
+}
+.home{
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  color: white;
+  height: 450px;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 400px;
+  background-color: rgba(0,0,0,0.5) !important;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid white;
+}
+p{
+  color: gray;
+}
+h3{
+  color: white;
+}
+.todolist{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: rgba(0,0,0,0.5) !important;
+  text-align: center;
+  justify-content: center;
+  padding: 5px;
+  margin: 5px;
+  gap: 15px;
+}
+button{
+  padding: 5px;
+  margin: 5px;
+}
