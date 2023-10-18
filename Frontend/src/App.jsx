@@ -34,7 +34,7 @@ function App() {
       else{
           // if login is succes then store the user and move the user to home page
         setUser(data);
-
+        //we will store it in localstorage also
         localStorage.setItem("userdata",JSON.stringify(data));
 
         navigate("/home");

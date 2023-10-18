@@ -52,15 +52,15 @@ app.post("/api/auth/singup", checkBodyParams, (req, res) => {
           gender: gender,
           password: has,
         })
-          .then((user) => {
+          .then((newUser) => {
             // if account is created successfully then sent an account Activation mail
             
             // generate token
             const token = jwt.sign(
               {
-                firstName: user.firstName,
-                email: user.email,
-                _id: user._id,
+                // firstName: newUser.firstName,
+                // email: newUser.email,
+                _id: newUser._id,
               },
               "2552",
               {expiresIn: 30*30}
@@ -77,13 +77,13 @@ app.post("/api/auth/singup", checkBodyParams, (req, res) => {
 
               var mailOptions = {
                 from:"sanjayka1993@gmail.com",
-                to: user.email,
+                to: newUser.email,
                 subject:'Activate Your Account Todo',
                 html:`
-                <p>Hey ${user.name}, Wellcome in Todo APP. Your Account has been Created.
-                In Order to use Account you have  to verify your email by clicking on following link.
+                <p>Hey ${newUser.firstName}, Wellcome in Todo APP. Your Account has been Created.
+                In Order to use your Account you have  to verify your email by clicking on following link.
                 </p>
-                <a style="padding:10px; background-color: dodgerblue" href="http://localhost:3010/auth/activate-account/${token}"> Activate Account </a>
+                <a style="padding:10px; background-color: dodgerblue; color:white" href="http://localhost:3010/auth/activate-account/${token}"> Activate Account </a>
                 `,
               };
               //sending email
@@ -106,7 +106,25 @@ app.post("/api/auth/singup", checkBodyParams, (req, res) => {
     })
     .catch((err) => res.json({ success: false, message: err.message }));
 });
-
+// Route that will handle the account activation link sent on email
+app.get("/auth/activate-account/:token", (req,res)=> {
+  const token = req.params.token;
+  //try to verify token
+  try{
+    const data= jwt.verify(token, "2552");
+    
+    //try to find the user now
+    UserTodos.findOneAndUpdate(data._id, {emailVerified:true})
+   .then (()=> res.json({success: true, message:"Account Activated. you can login"}))
+   .catch(()=>res.json({success:false,  message:"Please Try again! we are sorry for inconvinece!"}));
+  }
+   
+  catch(err)
+  {
+    return res.json({success:false, message:"Link has been Expired"})
+  }
+  
+});
 //  Login |POST|
 app.post("/api/auth/login", (req, res) => {
   const { email, password } = req.body;
@@ -135,7 +153,7 @@ app.post("/api/auth/login", (req, res) => {
               _id: User._id,
             },
             "2552",
-            {expiresIn: 30}
+            {expiresIn: 30*30}
           );
 
           return res.json({
