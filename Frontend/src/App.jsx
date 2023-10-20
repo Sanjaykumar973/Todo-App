@@ -5,13 +5,18 @@ import './App.css'
 import TodoContext from './TodoContext';
 import Home from './components/Home';
 import { Route, Routes, useNavigate } from "react-router-dom";
+import ForgetPassword from "./components/ForgetPassword";
+import ForgetPasswordInput from "./components/ForgetPasswordInput";
+// import BootstrapGrid from "./components/BootstrapGrid";
+// import NavBar from "./components/NavBar";
 
 function App() {
 
   const [user, setUser]  = useState(null);
   const [todos, setTodos] = useState([]);
+  const [error, setError] = useState([null]);
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   //Logins
   const login =(email, password) => {
     // try to login
@@ -218,14 +223,20 @@ function App() {
       deleteTodos,
       markAsComplete,
       logout,
+      error,
+      loading,
     }}
     >
     <Routes>
       <Route  path="/" element={<Login />} />
       <Route path="/signup" element={<Signup/>} />
-
       <Route path="/home" element={<Home/>} />
-    </Routes>
+      <Route path="/forget-password" element={<ForgetPassword/>} />
+      <Route 
+      path="/forget-password/set-password/:token" 
+      element={<ForgetPasswordInput />} 
+      />
+      </Routes>
     </TodoContext.Provider>
   );
 }

@@ -33,6 +33,8 @@ export default function Login() {
         <br/>
         
         <input type="submit" value="Login"/><br/>
+        <Link to="/forget-password"> Forget Password?</Link>
+        <br/>
         <Link to="/signup"> Dont have account, Register?</Link>
         
         </form>
