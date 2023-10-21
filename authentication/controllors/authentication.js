@@ -2,6 +2,8 @@ const nodemailer = require("nodemailer");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../modals/user");
+
+
 const signup = (req, res) => {
     const { firstName, lastName, email, phone, age, gender, password } = req.body;
   

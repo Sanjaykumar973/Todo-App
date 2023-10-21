@@ -4,15 +4,16 @@ const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
 
-//Middleware
-const { checkBodyParams, isLoggedIn } = require("./midllewares/Generals.js");
+//import routers
 
-// import controllors
+const authRouter = require("./routes/auth");
+const todoRouter = require("./routes/todo");
 
-const {signup, login, activateAccount, sendForgetPasswordLink, hanldePasswordUpdateDetials,} = require("./controllors/authentication");
-const { addTodo, readTodo, markAsComplete, deleteTodo,} = require ("./controllors/todo");
+//configuring Rounters
+app.use("/auth",authRouter)
+app.use("/todo",todoRouter)
 
-
+//setting app
 app.use(express.json());
 app.use(cors());
 
@@ -26,36 +27,10 @@ mongoose
 
 
 
-  //***********AUTHENTICATION ******************
-
-// SingUp |POST|
-app.post("/api/auth/singup", checkBodyParams, signup );
-// Route that will handle the account activation link sent on email
-app.get("/auth/activate-account/:token", activateAccount );
-//  Login |POST|
-app.post("/api/auth/login",login); 
-//sending forget password link
-app.post("/forget-password", sendForgetPasswordLink);
-//handle password
-app.post("/handle-password-update", hanldePasswordUpdateDetials); 
+  
 
 
 
-
-//***********TODO ******************
-//Add Todo   (Need to token alse will not allow)
-app.post("/api/todo/add", isLoggedIn, addTodo);
-
-//Read Todo
-app.get("/api/todo/get", isLoggedIn, readTodo );
-
-// Tip: whenever you wanted to designs an API where document will be updated or delete always spacify the
-// _id or docId in the url params of api
-// Update Todo(UsrId, title, description, completed, todoId)
-app.put("/todo/mark-complete/:todoId", isLoggedIn, markAsComplete );
-
-//Delete Todo
-app.delete("/todo/delete/:todoId", isLoggedIn, deleteTodo);
 
 
 
