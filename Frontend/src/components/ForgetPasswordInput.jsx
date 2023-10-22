@@ -14,7 +14,7 @@ export default function ForgetPasswordInput() {
       return;
     }
     // make an api call and send the tokne received from email and new password to backend
-    fetch(`http://localhost:3010/handle-update-password`, {
+    fetch(`http://localhost:3010/auth/handle-update-password`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

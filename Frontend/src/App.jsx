@@ -20,7 +20,7 @@ function App() {
   //Logins
   const login =(email, password) => {
     // try to login
-    fetch("http://localhost:3010/api/auth/login", {
+    fetch("http://localhost:3010/auth/login", {
       method:"POST", 
       headers:{
           "Content-type": "application/json",
@@ -62,7 +62,7 @@ function App() {
     gender, 
     password) => {
     
-      fetch("http://localhost:3010/api/auth/singup",{
+      fetch("http://localhost:3010/auth/singup",{
         method: "POST",
         headers:{
           "content-type":"application/json",
@@ -93,7 +93,7 @@ function App() {
 //Add Todo
   const addTodo =(title, description)=>{
 
-    fetch("http://localhost:3010/api/todo/add",{
+    fetch("http://localhost:3010/todo/add",{
         method: "POST",
         headers:{
           "content-type":"application/json",
@@ -123,7 +123,7 @@ function App() {
     //if user dosnt exists then go to back
     if(!user) return;
 
-    fetch("http://localhost:3010/api/todo/get",{
+    fetch("http://localhost:3010/todo/get",{
     method:"GET",
     headers:{
         "Context-Type":"application/json",

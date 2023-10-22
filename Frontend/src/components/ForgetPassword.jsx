@@ -5,7 +5,7 @@ export default function ForgetPassword() {
   const [email, setEmail] = useState("");
 
   const forgetPassword = () => {
-    fetch(`http://localhost:3010/forget-password`, {
+    fetch(`http://localhost:3010/auth/forget-password`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -6,16 +6,17 @@ const cors = require("cors");
 
 //import routers
 
+
 const authRouter = require("./routes/auth");
 const todoRouter = require("./routes/todo");
-
-//configuring Rounters
-app.use("/auth",authRouter)
-app.use("/todo",todoRouter)
 
 //setting app
 app.use(express.json());
 app.use(cors());
+
+//configuring Rounters
+app.use("/auth", authRouter);
+app.use("/todo", todoRouter);
 
 //Database connection
 mongoose
@@ -24,15 +25,5 @@ mongoose
   )
   .then(() => console.log("Database connected"))
   .catch((err) => console.log("Error connecting", err.message));
-
-
-
-  
-
-
-
-
-
-
 
 app.listen(3010, () => console.log("Server is running at port 3010"));
